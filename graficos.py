@@ -8,10 +8,6 @@ df = pd.read_csv(url)
 
 generos_contagem = df['playlist_genre'].value_counts().head(10)
 
-
-
-
-
 plt.figure(figsize=(12, 6))
 
 sns.barplot(x=generos_contagem.values, y=generos_contagem.index)
