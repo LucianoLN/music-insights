@@ -1,6 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+
+os.makedirs("graficos", exist_ok=True)
 
 url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv"
 
@@ -17,4 +20,4 @@ plt.xlabel('Número de Músicas')
 plt.ylabel('Gênero Musical')
 
 plt.tight_layout()
-plt.savefig("graficos/grafico_generos.png")
+plt.savefig("graficos/teste.png")
