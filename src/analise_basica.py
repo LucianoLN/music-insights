@@ -1,61 +1,31 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import utils
 
-
-# Precisamos do link do dadaset para termos acesso aos dados
 url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv"
-
-# Depois precisamos carregar o dataset. Como fazemos isso? Atribuiremos a variável df a leitura do arquivo csv
 df = pd.read_csv(url)
 
-# Ordena por popularidade (do maior para o menor)
-df_ordenado = df.sort_values(by='track_popularity', ascending=False)
+df_unico = utils.unicos_ordenados(df)
 
-# Remove duplicadas, mantendo apenas a mais popular
-df_unico = df_ordenado.drop_duplicates(subset=['track_name', 'track_artist'], keep='first')
+print("PRIMEIRAS LINHAS DO DATASET:")
+print(df_unico.head())
 
-# df_unico = df.drop_duplicates(subset=['track_name', 'track_artist'])
+print("\nINFORMAÇÕES GERAIS DO DATASET:")
+print(df_unico.info())
 
-# Para ver as primeiras linhas
-print(df.head())
+print("\nVALORES NULOS POR COLUNA:")
+print(df_unico.isnull().sum())
 
-# Para ver informaçoes gerais do dataset
-print(df.info())
+print("\nQUAIS GÊNEROS EXISTEM:")
+print(df_unico['playlist_genre'].unique())
 
-# Para verificar se tem valores nulos
-print(df.isnull().sum())
+print("\nQUANTAS MÚSICAS TEM POR GÊNERO:")
+print(df_unico['playlist_genre'].value_counts())
 
-# Para ver quais generos existem
-print(df['playlist_genre'].unique())
-
-# Para ver quantas musicas tem por genero
-print(df['playlist_genre'].value_counts())
-
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-# ver o top 10 mais popular
+print("\nTOP 10 MÚSICAS MAIS POPULARES")
 top_popular = df_unico.sort_values(by='track_popularity', ascending=False).head(10)
 print(top_popular[['track_name', 'track_artist', 'track_popularity']])
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
-# Isso mostra média, mediana, mínimo e máximo de popularidade, tempo, duração etc.
-print(df.describe())
-
-top_popular_unico = df_unico.sort_values(by='track_popularity', ascending=False).head(10)
-print(top_popular_unico[['track_name', 'track_artist', 'track_popularity']])
-
-
-nome_musica = "Dance Monkey"
-nome_artista = "Tones and I"
-existe = nome_musica in df_unico['track_name'].values
-musica2 = df_unico[(df['track_artist'] == nome_artista) & (df['track_name'] == nome_musica)]
-musica = df_unico[df['track_name'] == nome_musica]
-print(existe)
-print(musica)
-print(musica2)
-
-
-
-print(len(df))
-
-print(len(df_unico))
+print("\nVERIFICAR ESTATÍSTICAS NUMÉRICAS")
+print(df_unico.describe())
