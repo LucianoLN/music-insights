@@ -48,15 +48,16 @@ python3 -m src.main
 
 ```bash
 spotify-data-analysis/
-├── src/             # Scripts principais do projeto
-│   ├── main.py      # Menu interativo
-│   ├── graficos.py  # Geração de gráficos
-├── utils/           # Funções auxiliares
+├── src/                   # Scripts principais do projeto
+│   ├── main.py            # Menu interativo
+│   ├── graficos.py        # Geração de gráficos
+│   ├── analise_basica.py  # Geração de informações
+├── utils/                 # Funções auxiliares
 │   └── helpers.py
-├── imagens/         # Gráficos gerados
-├── data/            # Dataset local (se necessário)
-├── README.md        # Este arquivo
-├── requirements.txt # Dependências
+├── imagens/               # Gráficos gerados
+├── data/                  # Dataset local (se necessário)
+├── README.md              # Este arquivo
+├── requirements.txt       # Dependências
 └── .gitignore
 ```
 
